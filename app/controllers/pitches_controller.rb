@@ -1,7 +1,8 @@
 class PitchesController < ApplicationController
 
  def index
-    @pitchess = Pitch.all
+    @pitches = Pitch.all
+    @user = current_user
   end
 
   def new
@@ -28,11 +29,20 @@ class PitchesController < ApplicationController
 
   def update
     find_pitch
-
-    if @post.update(pitch_params)
-      redirect_to @post
+    if is_admin?
+      if @pitch.round ==1
+        @pitch.round =2
+      else
+        @pitch.round=1
+      end
+      @pitch.save
+      redirect_to pitches_path
     else
-      render 'edit'
+      if @pitch.update(pitch_params)
+        redirect_to @pitch
+      else
+        render 'edit'
+      end
     end
   end
 
@@ -55,4 +65,3 @@ class PitchesController < ApplicationController
     end
 
 end
-

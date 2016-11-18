@@ -12,9 +12,11 @@
 
     <nav>
       <% if logged_in? %>
-        <%= link_to "#{current_user.username}", user_path(current_user) %>
+        <%= link_to "#{current_user.name}", user_path(current_user) %>
         <%= link_to "Log Out", session_path(current_user), :method => :delete %>
         <%= link_to 'New Pitch', new_pitch_path %>
+        <%= link_to 'Round 1 Pitches', pitches_path %>
+
       <% else %>
         <%= link_to 'Register', new_user_path %>
         <%= link_to 'Login', new_session_path %>

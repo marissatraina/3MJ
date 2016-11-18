@@ -1,1 +1,26 @@
-index.html.erb
+
+
+<div class="pitchContainer">
+  <% @pitches.each do |pitch| %>
+  <% if is_admin? %>
+    Vote Count: <%= pitch.first_votes.count%>
+    Author: <%= pitch.user.name %>
+    <% if pitch.round == 1 %>
+      <%= link_to 'ADVANCE TO SECOND ROUND', pitch_path(pitch), method: :put %>
+    <% else %>
+      <%= link_to 'REMOVE FROM SECOND ROUND', pitch_path(pitch), method: :put %>
+    <% end %>
+  <% end %>
+      <div class="singlePitch">
+        <div class="appName"><%= pitch.app_name %></div>
+        <div class="pitchText"><%=pitch.text%></div>
+      </div>
+  <% if !is_admin? %>
+      <% if voted_for?(pitch) %>
+        <%= link_to 'Remove Vote', pitch_r1vote_path(pitch, find_vote(pitch)), method: :delete %>
+      <% else %>
+        <%= link_to 'Vote', pitch_r1votes_path(pitch), method: :post %>
+      <% end %>
+  <% end %>
+  <% end %>
+</div>
