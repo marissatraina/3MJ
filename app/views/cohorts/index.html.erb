@@ -1,0 +1,10 @@
+
+  <% if is_admin? %>
+    <ul>
+      <% @cohorts.each do |cohort| %>
+      <li><a href="/cohorts/<%= cohort.id %>"><%= cohort.name %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    You are not logged in as Admin
+  <% end %>
