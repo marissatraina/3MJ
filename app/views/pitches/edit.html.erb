@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Edit your Pitch</h1>
+  <%= form_for @pitch do |f| %>
+    App Name: <%= f.text_field :app_name %>
+    Text: <%= f.text_field :text %>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>

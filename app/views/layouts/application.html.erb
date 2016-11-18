@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Team3mj</title>
+    <title>RailsHackerNews</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,6 +9,18 @@
   </head>
 
   <body>
+
+    <nav>
+      <% if logged_in? %>
+        <%= link_to "#{current_user.username}", user_path(current_user) %>
+        <%= link_to "Log Out", session_path(current_user), :method => :delete %>
+        <%= link_to 'New Pitch', new_pitch_path %>
+      <% else %>
+        <%= link_to 'Register', new_user_path %>
+        <%= link_to 'Login', new_session_path %>
+      <% end %>
+      <%= link_to 'Home', root_path %>
+    </nav>
     <%= yield %>
   </body>
 </html>
