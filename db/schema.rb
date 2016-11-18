@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161118155028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "cohorts", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -50,6 +52,8 @@ ActiveRecord::Schema.define(version: 20161118155028) do
     t.index ["user_id"], name: "index_r2votes_on_user_id", using: :btree
   end
 
+=======
+>>>>>>> testing user model
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
     t.string   "email",           null: false

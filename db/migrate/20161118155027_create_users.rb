@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :email, null: false
       t.string :password_digest, null: false
       t.boolean :admin
-      t.references :cohort
+      #t.references :cohort
 
       t.timestamps
     end

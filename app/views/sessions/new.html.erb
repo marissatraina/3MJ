@@ -1,0 +1,21 @@
+<div>
+  <h1>Login</h1>
+
+    %= form_for :sessions, url: sessions_path do |f| %>
+     Email: <%= f.text_field :email %>
+     Password: <%= f.password_field :password %>
+     <%= f.submit 'Login' %>
+    % end %>
+</div>
+
+<div class="container">
+  <h1>Create an Account</h1>
+    <%= form_for @user do |f| %>
+      Username: <%= f.text_field :username %>
+      Email: <%= f.text_field :email %>
+      Password: <%= f.password_field :password %>
+      Confirm Password: <%= f.password_field :password_confirmation %>
+      Admin <%= f.checkbox name='Admin' value='admin Account' %>
+      <%= f.submit "Sign Up" %>
+    <% end %>
+</div>
