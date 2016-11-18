@@ -6,6 +6,7 @@ class PitchesController < ApplicationController
   end
 
   def new
+    @cohort = Cohort.find(params[:cohort_id])
     @pitch = Pitch.new
   end
 
@@ -13,7 +14,7 @@ class PitchesController < ApplicationController
     @user = current_user
     @pitch = Pitch.new(pitch_params)
     if @pitch.save
-      redirect_to @pitch
+      redirect_to cohort_path(params[:cohort_id])
     else
       render 'new'
     end
