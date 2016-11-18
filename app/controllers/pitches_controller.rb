@@ -36,7 +36,7 @@ class PitchesController < ApplicationController
         @pitch.round=1
       end
       @pitch.save
-      redirect_to pitches_path
+      redirect_to cohort_path(params[:cohort_id])
     else
       if @pitch.update(pitch_params)
         redirect_to @pitch

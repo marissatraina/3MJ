@@ -4,14 +4,14 @@ class R1votesController < ApplicationController
 
     @r1vote = R1vote.new(vote_params)
     if @r1vote.save
-      redirect_to pitches_path
+      redirect_to cohort_path(params[:cohort_id])
     end
   end
 
   def destroy
     find_vote
     @vote.destroy
-    redirect_to pitches_path
+    redirect_to cohort_path(params[:cohort_id])
   end
 
   private

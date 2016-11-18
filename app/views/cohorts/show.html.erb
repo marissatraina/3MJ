@@ -1,7 +1,25 @@
 
     <ul>
       <% @cohort.pitches.each do |pitch| %>
-      <li><%= pitch.app_name %></li>
+        <% if is_admin? %>
+          Vote Count: <%= pitch.first_votes.count%>
+          Author: <%= pitch.user.name %>
+          <% if pitch.round == 1 %>
+            <%= link_to 'ADVANCE TO SECOND ROUND', cohort_pitch_path(@cohort,pitch), method: :put %>
+          <% else %>
+            <%= link_to 'REMOVE FROM SECOND ROUND', cohort_pitch_path(@cohort,pitch), method: :put %>
+          <% end %>
+        <% end %>
+            <div class="singlePitch">
+              <div class="appName"><%= pitch.app_name %></div>
+              <div class="pitchText"><%=pitch.text%></div>
+            </div>
+        <% if !is_admin? %>
+            <% if voted_for?(pitch) %>
+              <%= link_to 'Remove Vote', cohort_pitch_r1vote_path(@cohort, pitch, find_vote(pitch)), method: :delete %>
+            <% else %>
+              <%= link_to 'Vote', cohort_pitch_r1votes_path(@cohort, pitch), method: :post %>
+            <% end %>
+        <% end %>
       <% end %>
     </ul>
-
