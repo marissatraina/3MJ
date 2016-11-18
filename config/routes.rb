@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :r1votes
   resources :r2votes
   resources :cohorts
-  root 'sessions#new'
+  root 'sessions#index'
 end
