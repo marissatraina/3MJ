@@ -1,8 +1,7 @@
 
   <h1>Create a Pitch</h1>
-  <%= form_for @pitch do |f| %>
+  <%= form_for [@cohort, @pitch] do |f| %>
     App Name: <%= f.text_field :app_name %>
     Text: <%= f.text_area :text%>
     <%= f.submit "Submit" %>
   <% end %>
-

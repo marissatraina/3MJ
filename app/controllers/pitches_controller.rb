@@ -1,10 +1,12 @@
 class PitchesController < ApplicationController
 
  def index
-    @pitchess = Pitch.all
+    @pitches = Pitch.all
+    @user = current_user
   end
 
   def new
+    @cohort = Cohort.find(params[:cohort_id])
     @pitch = Pitch.new
   end
 
@@ -12,7 +14,7 @@ class PitchesController < ApplicationController
     @user = current_user
     @pitch = Pitch.new(pitch_params)
     if @pitch.save
-      redirect_to @pitch
+      redirect_to cohort_path(params[:cohort_id])
     else
       render 'new'
     end
@@ -28,11 +30,20 @@ class PitchesController < ApplicationController
 
   def update
     find_pitch
-
-    if @post.update(pitch_params)
-      redirect_to @post
+    if is_admin?
+      if @pitch.round ==1
+        @pitch.round =2
+      else
+        @pitch.round=1
+      end
+      @pitch.save
+      redirect_to cohort_path(params[:cohort_id])
     else
-      render 'edit'
+      if @pitch.update(pitch_params)
+        redirect_to @pitch
+      else
+        render 'edit'
+      end
     end
   end
 
@@ -55,4 +66,3 @@ class PitchesController < ApplicationController
     end
 
 end
-
