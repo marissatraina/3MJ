@@ -1,18 +1,19 @@
 <div>
-  <div class="container-fluid center-block">
-  <h1>Login</h1>
+    <header class="row col-md-5 center-block">
+      <h1>Login</h1>
+    </header>
     <%= form_for :sessions, url: sessions_path do |f| %>
-    <div id="email-input" class="row col-md-9">
+    <div id="email-input" class="row col-md-9 center-block">
       Email:<br>
       <%= f.text_field :email %>
     </div>
-    <div id="password-input" class="row col-md-9">
+    <div id="password-input" class="row col-md-9 center-block">
       Password:<br>
       <%= f.password_field :password %>
     </div>
-    <div id="login-button" class="row col-md-9">
+    <div id="login-button" class="row col-md-9 center-block">
       <%= f.submit 'Login' %>
     </div>
     <% end %>
-  </div>
+
 </div>
