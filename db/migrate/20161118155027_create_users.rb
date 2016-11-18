@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.boolean :admin
       t.references :cohort
 
-      timsestamps
+      t.timestamps
     end
   end
 end

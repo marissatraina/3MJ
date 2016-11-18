@@ -8,8 +8,10 @@ class user < ApplicationRecord
 
   has_secure_password
 
+  belongs_to :cohort
   has_many :pitches
-  has_many :votes
-  belongs_to :cohorts
+  has_many :r1votes
+  has_many :r2votes
+
 
 end
