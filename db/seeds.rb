@@ -16,7 +16,7 @@ R2vote.delete_all
 coyotes = Cohort.create(name:'Coyotes')
 wolves = Cohort.create(name:'Wolves')
 
-admin = User.create(name:'admin', email:'admin@gmail.com', password:'admin', admin:true)
+admin = User.create(name:'admin', email:'admin@gmail.com', password:'admin', admin:true, cohort: coyotes)
 
 jason = User.create(name:'jason', email:'jason@gmail.com', password:'jason', admin:false, cohort: coyotes)
 marissa = User.create(name:'marissa', email:'marissa@gmail.com', password:'marissa', admin:false, cohort: coyotes)
