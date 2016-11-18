@@ -59,10 +59,8 @@ ActiveRecord::Schema.define(version: 20161118155028) do
     t.string   "email",           null: false
     t.string   "password_digest", null: false
     t.boolean  "admin"
-    t.integer  "cohort_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["cohort_id"], name: "index_users_on_cohort_id", using: :btree
   end
 
 end
