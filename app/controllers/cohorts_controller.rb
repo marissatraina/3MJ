@@ -11,8 +11,13 @@ class CohortsController < ApplicationController
     find_cohort
   end
 
+  def index2
+    find_cohort
+  end
+
 private
+
   def find_cohort
       @cohort = Cohort.find(params[:id])
-    end
+  end
 end

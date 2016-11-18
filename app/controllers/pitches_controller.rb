@@ -55,6 +55,8 @@ class PitchesController < ApplicationController
     redirect_to root_url
   end
 
+
+
   private
 
     def find_pitch
