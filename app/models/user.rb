@@ -10,8 +10,8 @@ class User < ApplicationRecord
 
   belongs_to :cohort
   has_many :pitches
-  has_many :r1votes
-  has_many :r2votes
+  has_many :first_votes, class_name: 'R1vote'
+  has_many :ranking_votes, class_name: 'R2vote'
 
 
 end
