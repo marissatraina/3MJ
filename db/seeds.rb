@@ -9,16 +9,16 @@
 Cohort.delete_all
 User.delete_all
 Pitch.delete_all
-R1votes.delete_all
-R2votes.delete_all
+R1vote.delete_all
+R2vote.delete_all
 
 
 coyotes = Cohort.create(name:'Coyotes')
 wolves = Cohort.create(name:'Wolves')
 
-jason = User.create(name:'jason', email:'jason@gmail.com', password:'jason', admin:false, cohort: "coyotes")
-marissa = User.create(name:'marissa', email:'marissa@gmail.com', password:'marissa', admin:false, cohort: "coyotes")
+jason = User.create(username:'jason', email:'jason@gmail.com', password:'jason', admin:false, cohort: coyotes)
+marissa = User.create(username:'marissa', email:'marissa@gmail.com', password:'marissa', admin:false, cohort: coyotes)
 
-pitch1 = Pitch.create(user:jason, round_id:1, title:'Pitch Here', text:'amazing pitch' )
-pitch2 = Pitch.create(user:jason, round_id:1, title:'New Pitch Here', text:'amazinger pitch' )
-pitch3 = Pitch.create(user:marissa, round_id:1, title:'Best Pitch', text:'proper english pitch' )
+pitch1 = Pitch.create(user:jason, round:1, app_name:'Pitch Here', text:'amazing pitch' )
+pitch2 = Pitch.create(user:jason, round:1, app_name:'New Pitch Here', text:'amazinger pitch' )
+pitch3 = Pitch.create(user:marissa, round:1, app_name:'Best Pitch', text:'proper english pitch' )
