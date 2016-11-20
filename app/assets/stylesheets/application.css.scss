@@ -3,17 +3,19 @@
  *= require_self
  */
 
+@import url(family=Open+Sans+Condensed:300);
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "compass";
 
 body {
   background-color: #f0f0f3;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial,sans-serif;
 }
 
-.center-block {
-  margin: auto;
+
+
+p, div, a {
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 .flex-container {
@@ -47,11 +49,14 @@ body {
 
   background-color: white;
   opacity: 1;
-  border-bottom: #dbdcdd
+  border-bottom: #dbdcdd;
 }
+
+
 
 .navigation a {
   text-decoration: none;
+  font-weight: lighter;
   display: block;
   padding: 1em;
   color: black;
@@ -62,13 +67,17 @@ body {
 .navigation a:hover {
   background: darken(white, 2%);
 }
-
-.navigation p {
+.navigation p#logo a {
   display: block;
   padding: 1em;
   text-align: center;
   padding: 10px;
   font-weight: bold;
+}
+
+.navigation p#logo a:hover {
+  color: #1ea6af;
+  background: white;
 }
 
 @media all and (max-width: 700px) {
@@ -86,10 +95,18 @@ body {
 }
 
 input[type="submit"]{
-  margin-top: 2%;
+  margin-top: 7%;
+  width: 152px;
+  padding: 2px;
+  background-color: #1ea6af;
+  color: white;
+  border: none;
 }
 
+input[type="submit"]:hover {
+  background: lighten(#1ea6af, 5%);
+}
 
-.container {
-  width: 0%;
+#email-input {
+  margin-bottom: 5%;
 }
