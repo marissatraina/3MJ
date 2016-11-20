@@ -1,0 +1,112 @@
+// app/assets/stylesheets/application.css.scss
+/*
+ *= require_self
+ */
+
+@import url(family=Open+Sans+Condensed:300);
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "compass";
+
+body {
+  background-color: #f0f0f3;
+}
+
+
+
+p, div, a {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.flex-container {
+  display: flex;
+  height: inherit;
+}
+
+.flex-col-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+#login-container {
+  margin: auto;
+  height: 500px;
+}
+
+.navigation {
+  list-style: none;
+  margin: 0;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-start;
+
+  background-color: white;
+  opacity: 1;
+  border-bottom: #dbdcdd;
+}
+
+
+
+.navigation a {
+  text-decoration: none;
+  font-weight: lighter;
+  display: block;
+  padding: 1em;
+  color: black;
+  text-align: center;
+  padding: 10px;
+}
+
+.navigation a:hover {
+  background: darken(white, 2%);
+}
+.navigation p#logo a {
+  display: block;
+  padding: 1em;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.navigation p#logo a:hover {
+  color: #1ea6af;
+  background: white;
+}
+
+@media all and (max-width: 700px) {
+  .navigation {
+    justify-content: space-around;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .navigation {
+    -webkit-flex-flow: column wrap;
+    flex-flow: column wrap;
+    padding: 0;
+  }
+}
+
+input[type="submit"]{
+  margin-top: 7%;
+  width: 152px;
+  padding: 2px;
+  background-color: #1ea6af;
+  color: white;
+  border: none;
+}
+
+input[type="submit"]:hover {
+  background: lighten(#1ea6af, 5%);
+}
+
+#email-input {
+  margin-bottom: 5%;
+}

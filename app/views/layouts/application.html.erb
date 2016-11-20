@@ -9,7 +9,9 @@
   </head>
 
   <body>
-      <nav class="navbar">
+      <nav class="navigation">
+        <p id="logo"><%= link_to '3 M J', root_path %></p>
+        <%= link_to 'Home', root_path %>
         <% if logged_in? %>
           <%= link_to "#{current_user.name}", user_path(current_user) %>
           <%= link_to "Log Out", session_path(current_user), :method => :delete %>
@@ -18,9 +20,8 @@
           <%= link_to 'Register', new_user_path %>
           <%= link_to 'Login', new_session_path %>
         <% end %>
-        <%= link_to 'Home', root_path %>
       </nav>
-      <div class="container">
+      <div class="flex-container">
         <%= yield %>
       </div>
   </body>
