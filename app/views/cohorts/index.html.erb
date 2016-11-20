@@ -1,10 +1,11 @@
 
   <% if is_admin? %>
-    <ul>
+    <div id="cohort container" class="flex-item center-container">
+      <h1>Cohorts</h1>
       <% @cohorts.each do |cohort| %>
-      <li><a href="/cohorts/<%= cohort.id %>"><%= cohort.name %></a></li>
+        <h4><a href="/cohorts/<%= cohort.id %>"><%= cohort.name %></a></h4>
       <% end %>
-    </ul>
+    </div>
   <% else %>
     You are not logged in as Admin
   <% end %>
