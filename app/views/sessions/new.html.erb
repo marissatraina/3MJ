@@ -1,20 +1,25 @@
-<div id="login-container" class="flex-item" >
+<div id="login-container" class="flex-item center-container" >
+  <div class="flex-item">
+    <h1>Login</h1>
+  </div><br>
     <div class="flex-col-container">
-      <div class="flex-item">
-        <h1>Login</h1>
-      </div><br>
+
       <%= form_for :sessions, url: sessions_path do |f| %>
-      <div id="email-input" class="flex-item">
+
+      <div id="input" class="flex-item">
         Email:<br>
         <%= f.text_field :email %>
       </div>
-      <div id="password-input" class="flex-item">
+
+      <div id="input" class="flex-item">
         Password:<br>
         <%= f.password_field :password %>
       </div>
+
       <div id="login-button" class="flex-item">
         <%= f.submit 'Login' %>
       </div>
+
+      <% end %>
     </div>
-    <% end %>
 </div>

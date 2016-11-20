@@ -3,7 +3,6 @@
  *= require_self
  */
 
-@import url(family=Open+Sans+Condensed:300);
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "compass";
@@ -11,11 +10,12 @@
 body {
   background-color: #f0f0f3;
 }
+h2 {
+  color: #727e7e;
+}
 
-
-
-p, div, a {
-  font-family: 'Open Sans Condensed', sans-serif;
+h4 {
+  color: #299d9f;
 }
 
 .flex-container {
@@ -29,9 +29,9 @@ p, div, a {
   flex-wrap: nowrap;
 }
 
-#login-container {
+.center-container {
   margin: auto;
-  height: 500px;
+  height: inherit;
 }
 
 .navigation {
@@ -52,11 +52,9 @@ p, div, a {
   border-bottom: #dbdcdd;
 }
 
-
-
 .navigation a {
   text-decoration: none;
-  font-weight: lighter;
+  font-weight: 200;
   display: block;
   padding: 1em;
   color: black;
@@ -67,6 +65,7 @@ p, div, a {
 .navigation a:hover {
   background: darken(white, 2%);
 }
+
 .navigation p#logo a {
   display: block;
   padding: 1em;
@@ -86,7 +85,7 @@ p, div, a {
   }
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 300px) {
   .navigation {
     -webkit-flex-flow: column wrap;
     flex-flow: column wrap;
@@ -96,7 +95,7 @@ p, div, a {
 
 input[type="submit"]{
   margin-top: 7%;
-  width: 152px;
+  width: 160px;
   padding: 2px;
   background-color: #1ea6af;
   color: white;
@@ -107,6 +106,19 @@ input[type="submit"]:hover {
   background: lighten(#1ea6af, 5%);
 }
 
-#email-input {
+input {
   margin-bottom: 5%;
+}
+
+div input {
+  width:  160px;
+}
+
+.input-container {
+  margin-top: 10%;
+  margin-left: 18%;
+}
+
+div.flex-item {
+  max-width: 80%
 }

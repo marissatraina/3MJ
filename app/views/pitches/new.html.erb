@@ -1,7 +1,22 @@
+<div class="flex-item center-container">
+  <h1>Create a Pitch</h1><br>
+  <div class="flex-col-container center-container input-container">
+    <%= form_for [@cohort, @pitch] do |f| %>
+    <div class="flex-item">
+      App Name:<br>
+      <%= f.text_field :app_name %>
+    </div>
 
-  <h1>Create a Pitch</h1>
-  <%= form_for [@cohort, @pitch] do |f| %>
-    App Name: <%= f.text_field :app_name %>
-    Text: <%= f.text_area :text%>
-    <%= f.submit "Submit" %>
-  <% end %>
+    <div class="flex-item">
+      Text:<br>
+      <%= f.text_area :text%>
+    </div>
+
+    <div class="flex-item">
+      <%= f.submit "Submit" %>
+    </div>
+    <% end %>
+
+  </div>
+
+</div>
