@@ -1,10 +1,33 @@
-<div class="container">
+<div id="register-container" class="flex-item center-container" >
   <h1>Create an Account</h1>
-  <%= form_for @user do |f| %>
-    Full Name: <%= f.text_field :name %>
-    Email: <%= f.text_field :email %>
-    Password: <%= f.password_field :password %>
-    Confirm Password: <%= f.password_field :password_confirmation %>
-    <%= f.submit "Sign Up" %>
-  <% end %>
+  <div class="flex-col-container center-container input-container">
+
+    <%= form_for :user, url: users_path do |f| %>
+
+    <div class="flex-item">
+      Full Name:<br>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="flex-item">
+      Email:<br>
+      <%= f.text_field :email %>
+    </div>
+
+    <div class="flex-item">
+      Password:<br>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="flex-item">
+      Confirm Password:<br>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div class="flex-item">
+      <%= f.submit "Sign Up" %>
+    </div>
+
+    <% end %>
+  </div>
 </div>
