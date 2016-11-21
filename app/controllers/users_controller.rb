@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    new_user = user_params.merge({cohort: Cohort.find_by(name:params[:user][:cohort])})
+    @user = User.new(new_user)
 
     if @user.save
       session[:user_id] = @user.id

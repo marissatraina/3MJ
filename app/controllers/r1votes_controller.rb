@@ -9,7 +9,7 @@ class R1votesController < ApplicationController
   end
 
   def destroy
-    find_vote
+    find_voted
     @vote.destroy
     redirect_to cohort_path(params[:cohort_id])
   end
@@ -19,7 +19,7 @@ class R1votesController < ApplicationController
     {pitch: Pitch.find(params[:pitch_id]), user: current_user}
   end
 
-  def find_vote
+  def find_voted
     @vote = R1vote.find(params[:id])
   end
 end

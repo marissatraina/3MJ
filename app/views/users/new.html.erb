@@ -14,6 +14,11 @@
       <%= f.text_field :email %>
     </div>
 
+    <div class='flex-item'>
+      Cohort: <br>
+      <%= f.select :cohort, Cohort.all.pluck('name') %>
+    </div>
+
     <div class="flex-item">
       Password:<br>
       <%= f.password_field :password %>
