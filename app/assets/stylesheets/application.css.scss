@@ -10,6 +10,7 @@
 body {
   background-color: #f0f0f3;
 }
+
 h2 {
   color: #727e7e;
 }
@@ -20,6 +21,7 @@ h4 {
 
 .flex-container {
   display: flex;
+  justify-content: space-around;
   height: inherit;
 }
 
@@ -119,10 +121,33 @@ div input {
   margin-left: 18%;
 }
 
-div.flex-item {
-  max-width: 80%;
-}
-
 .app-name {
   margin-top: 3%;
+}
+
+div#round-1 {
+  flex-grow: 1;
+}
+
+div#round-2 {
+  flex-grow: 1;
+}
+
+div#rounds-container {
+  width: 80%;
+}
+
+div#rank-container {
+  height: inherit;
+  padding: 0px;
+  align-items: baseline;
+}
+
+select {
+  padding: 30px 30px;
+}
+
+form#new_r2vote {
+  width: 300px;
+  height: 50px;
 }
