@@ -1,83 +1,98 @@
-  <div class="flex-item center-container">
+  <div id="rounds-container" class="flex-item center-container">
     <h1><%=@cohort.name %> Pitches</h1>
-    <h2>Round 1</h1>
-      <% @cohort.pitches.each do |pitch| %>
-        <div class="singlePitch">
-        <div class="app-name">
-          <h4><%= pitch.app_name %></h4>
-        </div>
+    <div id="rounds" class="flex-container">
+      <div id="round-1" class="flex-item">
+        <div class="flex-col-container">
+          <div class="flex-item">
+            <h2>Round 1</h2>
+              <% @cohort.pitches.each do |pitch| %>
+                <div class="singlePitch">
+                  <div class="app-name">
+                    <h4><%= pitch.app_name %></h4>
+                  </div>
 
-        <div class="pitchText">
-          <%=pitch.text%>
+                  <div class="pitchText">
+                    <%=pitch.text%>
+                  </div>
+                </div>
+                <% if is_admin? %>
+                Vote Count: <%= pitch.first_votes.count%>
+                Author: <%= pitch.user.name %>
+                <% if pitch.round == 1 %>
+                <%= link_to 'ADVANCE TO SECOND ROUND', cohort_pitch_path(@cohort,pitch), method: :put %>
+                <% else %>
+                <%= link_to 'REMOVE FROM SECOND ROUND', cohort_pitch_path(@cohort,pitch), method: :put %>
+                <% end %>
+                <% end %>
+
+                <% if !is_admin? %>
+                <% if voted_for?(pitch) %>
+                <%= link_to 'Remove Vote', cohort_pitch_r1vote_path(@cohort, pitch, find_vote(pitch)), method: :delete %>
+                <% else %>
+                <%= link_to 'Vote', cohort_pitch_r1votes_path(@cohort, pitch), method: :post %>
+                <% end %>
+                <% end %>
+                <% end %>
+          </div>
         </div>
       </div>
-      <% if is_admin? %>
-      Vote Count: <%= pitch.first_votes.count%>
-      Author: <%= pitch.user.name %>
-      <% if pitch.round == 1 %>
-      <%= link_to 'ADVANCE TO SECOND ROUND', cohort_pitch_path(@cohort,pitch), method: :put %>
-      <% else %>
-      <%= link_to 'REMOVE FROM SECOND ROUND', cohort_pitch_path(@cohort,pitch), method: :put %>
-      <% end %>
-      <% end %>
 
-      <% if !is_admin? %>
-      <% if voted_for?(pitch) %>
-      <%= link_to 'Remove Vote', cohort_pitch_r1vote_path(@cohort, pitch, find_vote(pitch)), method: :delete %>
-      <% else %>
-      <%= link_to 'Vote', cohort_pitch_r1votes_path(@cohort, pitch), method: :post %>
-      <% end %>
-      <% end %>
-      <% end %>
-
+      <div id="round-2" class="flex-item">
+        <div class="flex-col-container">
           <h2>Round 2</h1>
 
-      <% @cohort.pitches.each do |pitch| %>
-      <%if pitch.round == 2 %>
+          <% @cohort.pitches.each do |pitch| %>
+          <%if pitch.round == 2 %>
 
-        <div class="singlePitch">
-          <div class="app-name">
-            <h4><%= pitch.app_name %></h4>
-          </div>
+            <div class="singlePitch">
+                <div class="app-name">
+                  <h4><%= pitch.app_name %></h4>
+                </div>
 
-          <div class="pitchText">
-            <%=pitch.text%>
-          </div>
-         <div class="Current Rank">
-          Current Rank:
-        <%=pitch.ranking_votes.find_by(user:current_user).try(:rank)%>
+                <div class="pitchText">
+                  <p><%=pitch.text%></p>
+                </div>
+                <div class="Current Rank">
+                  <p id="current-rank">Current Rank:</p>
+                    <%=pitch.ranking_votes.find_by(user:current_user).try(:rank)%>
+                </div>
+            </div>
+
+            <%= form_for [@cohort, pitch, @r2vote] do |f| %>
+            <div id="rank-item" class='flex-item'>
+              <div id="rank-container" class="flex-container">
+                <p>Update Rank</p>
+                <select name="rank">
+                  <% @cohort.pitches.where(round:2).count.times do |i| %>
+
+                    <option value=<%=i+1%>><%=i+1%></option>
+                  <%end%>
+
+                </select>
+                <div id="set-rank-button" class="flex-item">
+                      <%= f.submit "Set Rank" %>
+                <%end %>
+                </div>
+                <div class="flex-item">
+                  <% if pitch.ranking_votes.find_by(user:current_user).try(:rank)%>
+                  <%= link_to 'Remove Rank', cohort_pitch_r2vote_path(@cohort, pitch, find_vote2(pitch)), method: :delete %>
+                  <%end%>
+                </div>
+              </div>
+            </div>
+
+          <% if is_admin? %>
+            Vote Count: <%= pitch.first_votes.count%>
+            Author: <%= pitch.user.name %>
+
+
+            <% end %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
-        </div>
-
-      <%= form_for [@cohort, pitch, @r2vote] do |f| %>
-       <div class='flex-item'>
-          Update Rank: <br>
-        <select name="rank">
-          <% @cohort.pitches.where(round:2).count.times do |i| %>
-
-            <option value=<%=i+1%>><%=i+1%></option>
-          <%end%>
-
-        </select>
-
-        </div>
-<div class="flex-item">
-      <%= f.submit "Set Rank" %>
     </div>
-        <%end %>
-  <% if pitch.ranking_votes.find_by(user:current_user).try(:rank)%>
-  <%= link_to 'Remove Rank', cohort_pitch_r2vote_path(@cohort, pitch, find_vote2(pitch)), method: :delete %>
-  <%end%>
-
-
-
-      <% if is_admin? %>
-        Vote Count: <%= pitch.first_votes.count%>
-        Author: <%= pitch.user.name %>
-
-
-        <% end %>
-        <% end %>
-      <% end %>
   </div>
+  </div>
+
 
