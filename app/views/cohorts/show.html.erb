@@ -2,6 +2,15 @@
     <h1><%=@cohort.name %> Pitches</h1>
     <h2>Round 1</h1>
       <% @cohort.pitches.each do |pitch| %>
+        <div class="singlePitch">
+        <div class="app-name">
+          <h4><%= pitch.app_name %></h4>
+        </div>
+
+        <div class="pitchText">
+          <%=pitch.text%>
+        </div>
+      </div>
       <% if is_admin? %>
       Vote Count: <%= pitch.first_votes.count%>
       Author: <%= pitch.user.name %>
@@ -11,15 +20,7 @@
       <%= link_to 'REMOVE FROM SECOND ROUND', cohort_pitch_path(@cohort,pitch), method: :put %>
       <% end %>
       <% end %>
-      <div class="singlePitch">
-        <div class="app-name">
-          <h4><%= pitch.app_name %></h4>
-        </div>
 
-        <div class="pitchText">
-          <%=pitch.text%>
-        </div>
-      </div>
       <% if !is_admin? %>
       <% if voted_for?(pitch) %>
       <%= link_to 'Remove Vote', cohort_pitch_r1vote_path(@cohort, pitch, find_vote(pitch)), method: :delete %>
@@ -28,4 +29,55 @@
       <% end %>
       <% end %>
       <% end %>
+
+          <h2>Round 2</h1>
+
+      <% @cohort.pitches.each do |pitch| %>
+      <%if pitch.round == 2 %>
+
+        <div class="singlePitch">
+          <div class="app-name">
+            <h4><%= pitch.app_name %></h4>
+          </div>
+
+          <div class="pitchText">
+            <%=pitch.text%>
+          </div>
+         <div class="Current Rank">
+          Current Rank:
+        <%=pitch.ranking_votes.find_by(user:current_user).try(:rank)%>
+      </div>
+        </div>
+
+      <%= form_for [@cohort, pitch, @r2vote] do |f| %>
+       <div class='flex-item'>
+          Update Rank: <br>
+        <select name="rank">
+          <% @cohort.pitches.where(round:2).count.times do |i| %>
+
+            <option value=<%=i+1%>><%=i+1%></option>
+          <%end%>
+
+        </select>
+
+        </div>
+<div class="flex-item">
+      <%= f.submit "Set Rank" %>
+    </div>
+        <%end %>
+  <% if pitch.ranking_votes.find_by(user:current_user).try(:rank)%>
+  <%= link_to 'Remove Rank', cohort_pitch_r2vote_path(@cohort, pitch, find_vote2(pitch)), method: :delete %>
+  <%end%>
+
+
+
+      <% if is_admin? %>
+        Vote Count: <%= pitch.first_votes.count%>
+        Author: <%= pitch.user.name %>
+
+
+        <% end %>
+        <% end %>
+      <% end %>
   </div>
+

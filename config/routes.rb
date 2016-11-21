@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :cohorts do
     resources :pitches do
       resources :r1votes
+      resources :r2votes
+
     end
   end
   resources :r2votes

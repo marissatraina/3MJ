@@ -1,10 +1,22 @@
 
   <% if is_admin? %>
+
+
     <div id="cohort container" class="flex-item center-container">
       <h1>Cohorts</h1>
+
       <% @cohorts.each do |cohort| %>
         <h4><a href="/cohorts/<%= cohort.id %>"><%= cohort.name %></a></h4>
       <% end %>
+      <%= form_for :cohort,url: cohorts_path do |f| %>
+      <div class="flex-item">
+        Cohort Name:<br>
+        <%= f.text_field :name %>
+      </div>
+       <div class="flex-item">
+        <%= f.submit "Add cohort" %>
+      </div>
+    <% end %>
     </div>
   <% else %>
     You are not logged in as Admin
